@@ -41,6 +41,3 @@ function gameInit()
   drawSnakeFood();
 }
 setInterval(gameInit,20);
-
-
-drawSnakeFood();
