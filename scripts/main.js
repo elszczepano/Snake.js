@@ -58,10 +58,6 @@ function drawSnakeFood() {
           ctx.fillStyle = foodColor;
           ctx.fillRect(foodX * gridSize,foodY * gridSize,gridSize-2,gridSize-2);
           }
-<<<<<<< HEAD
-
-=======
->>>>>>> b20aef75987ee9d2bc207442a872d635b33cef09
 function drawSnake() {
          snakeX += velocityX;
          snakeY += velocityY;
