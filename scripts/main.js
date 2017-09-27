@@ -13,8 +13,8 @@ let velocityX = 0;
 let velocityY = 0;
 let trail = [];
 let snakeTail = 5;
-let foodX = 20;
-let foodY = 20;
+let foodX = Math.floor(Math.random()*tileCount);
+let foodY = Math.floor(Math.random()*tileCount);
 
 let snakeX = playground.width / 2 - gridSize / 2;
 let snakeY = playground.height / 2 - gridSize / 2;
@@ -23,6 +23,7 @@ function drawPlayground() {
     ctx.fillStyle = "#000";
       ctx.fillRect(0,0,playground.width,playground.height);
 }
+
 function moveSnake(ev) {
     switch (ev.keyCode) {
       case 37:
@@ -55,10 +56,10 @@ function drawSnakeFood() {
           foodY = Math.floor(Math.random()*tileCount);
           }
           ctx.fillStyle = foodColor;
-          ctx.fillRect(foodX * gridSize,foodX * gridSize,gridSize-2,gridSize-2);
+          ctx.fillRect(foodX * gridSize,foodY * gridSize,gridSize-2,gridSize-2);
           }
-function drawSnake() {
 
+function drawSnake() {
          snakeX += velocityX;
          snakeY += velocityY;
         if(snakeX < 0) {
