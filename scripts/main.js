@@ -23,7 +23,6 @@ function drawPlayground() {
     ctx.fillStyle = "#000";
       ctx.fillRect(0,0,playground.width,playground.height);
 }
-
 function moveSnake(ev) {
     switch (ev.keyCode) {
       case 37:
@@ -48,7 +47,6 @@ function moveSnake(ev) {
         break;
     }
 }
-
 function drawSnakeFood() {
         if(snakeX==foodX && snakeY==foodY) {
           snakeTail++;
@@ -77,9 +75,9 @@ function drawSnake() {
         ctx.fillStyle = snakeColor;
         for(let i = 0; i < trail.length; i++) {
             ctx.fillRect(trail[i].x * gridSize,trail[i].y * gridSize,gridSize-2,gridSize-2);
-            if((trail[i].x == snakeX && trail[i].y == snakeY)&&(snakeX!=0&&snakeY!=0)) {
-                snakeTail = 5;
+            if((trail[i].x == snakeX && trail[i].y == snakeY)&&(snakeX!=0||snakeY!=0)) {
                 alert("Game over! Your score: "+(snakeTail-5)+" points. Wanna play again?");
+                snakeTail = 5;
                 location.reload();
             }
         }
@@ -88,12 +86,8 @@ function drawSnake() {
         trail.shift();
         }
 }
-
 function gameInit() {
   drawSnake();
   drawSnakeFood();
 }
-
-// function detectCollision() {
-//   if(!(snakeY <= 0 || snakeY >= playground.width || snakeX <= 0 || snakeX >= playground.height )) {
 setInterval(gameInit,100);
