@@ -77,8 +77,10 @@ function drawSnake() {
         ctx.fillStyle = snakeColor;
         for(let i = 0; i < trail.length; i++) {
             ctx.fillRect(trail[i].x * gridSize,trail[i].y * gridSize,gridSize-2,gridSize-2);
-            if(trail[i].x == snakeX && trail[i].y == snakeY) {
+            if((trail[i].x == snakeX && trail[i].y == snakeY)&&(snakeX!=0&&snakeY!=0)) {
                 snakeTail = 5;
+                alert("Game over! Your score: "+(snakeTail-5)+" points. Wanna play again?");
+                location.reload();
             }
         }
         trail.push({x:snakeX,y:snakeY});
@@ -94,12 +96,4 @@ function gameInit() {
 
 // function detectCollision() {
 //   if(!(snakeY <= 0 || snakeY >= playground.width || snakeX <= 0 || snakeX >= playground.height )) {
-//
-//   }
-//   else {
-//     //for later use... disabled in production.
-//     //alert("Game over! Your score: "+(snakeTail-5)+" points. Wanna play again?");
-//     //location.reload();
-//   }
-// }
 setInterval(gameInit,100);
