@@ -22,29 +22,48 @@ let snakeY = playground.height / 2 - gridSize / 2;
 
 function drawPlayground() {
     ctx.fillStyle = "#000";
-      ctx.fillRect(0,0,playground.width,playground.height);
+    ctx.fillRect(0,0,playground.width,playground.height);
 }
-function moveSnake(ev) {
-    switch (ev.keyCode) {
-      case 37:
+function handleMovement(direction){
+    switch (direction) {
+      case "left":
         //move left
         velocityX = -1;
         velocityY = 0;
         break;
-      case 38:
+      case "up":
         //move up
         velocityX = 0;
         velocityY = -1;
         break;
-      case 39:
+      case "right":
         //move right
         velocityX = 1;
         velocityY = 0;
         break;
-      case 40:
+      case "down":
         //move down
         velocityX = 0;
         velocityY = 1;
+        break;
+    }
+}
+function moveSnake(ev) {
+    switch (ev.keyCode) {
+      case 37:
+        handleMovement("left");
+        break;
+      case 38:
+        //move up
+        handleMovement("up");
+        break;
+      case 39:
+        //move right
+        handleMovement("right");
+        break;
+      case 40:
+        //move down
+        handleMovement("down");
         break;
     }
 }
