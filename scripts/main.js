@@ -1,13 +1,14 @@
 const playground = document.querySelector('canvas');
 const ctx = playground.getContext('2d');
+const score = document.querySelector('scoreBox');
 document.addEventListener("keydown",moveSnake);
 
 playground.width = 500;
 playground.height = 500;
 
 const gridSize = 20;
-const snakeColor = "#ffff33";
-const foodColor = "#33ff00";
+const snakeColor = "#ffff99";
+const foodColor = "#990033";
 let tileCount = playground.width/gridSize;
 let velocityX = 0;
 let velocityY = 0;
@@ -50,6 +51,7 @@ function moveSnake(ev) {
 function drawSnakeFood() {
         if(snakeX==foodX && snakeY==foodY) {
           snakeTail++;
+          scoreBox.innerHTML = snakeTail-5;
           foodX = Math.floor(Math.random()*tileCount);
           foodY = Math.floor(Math.random()*tileCount);
           }

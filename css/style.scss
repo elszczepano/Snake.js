@@ -1,8 +1,57 @@
 @charset "UTF-8";
+
+@mixin border-radius
+{
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
 body
+{
+  font-family: 'Josefin Sans', sans-serif;
+}
+$canvasSize: 500px;
+.container
 {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  .rulebook-container
+  {
+    margin-left: 20px;
+    height: $canvasSize;
+    width: $canvasSize;
+    text-align: center;
+    background-color: #eee;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    @include border-radius;
+    ol li
+    {
+      padding: 5px 0;
+      box-sizing: border-box;
+    }
+    h1
+    {
+      margin: 0;
+      padding: 10px;
+      box-sizing: border-box;
+      background-color: #ddd;
+      @include border-radius;
+      font-family: 'Pangolin', cursive;
+    }
+
+    .score-box
+    {
+      font-size:3rem;
+      color:#990033;
+    }
+  }
+}
+footer
+{
+  width: 100%;
+  position: absolute;
+  bottom:0;
+  text-align: center;
 }
