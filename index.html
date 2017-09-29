@@ -1,14 +1,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Snake.js</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,100i,300,300i,400,400i,600,600i,700,700i|Pangolin" rel="stylesheet">
     <link rel="stylesheet" href="css/style.min.css">
   </head>
   <body>
-    <div class="container">
-      <canvas></canvas>
+    <div class="container" >
+      <canvas id="swipeMe"></canvas>
       <div class="rulebook-container">
             <h1>Snake.js rules:</h1>
           <div>
@@ -17,7 +18,7 @@
               <li>Never step back. It's a suicide for your pet</li>
               <li>Move your snake using arrows</li>
               <li>You can move through edges</li>
-              <li>Play only on desktop. Mobile devicess not supported</li>
+              <li>Mobile devices supported! Swipe to Move</li>
               <li>You can give me a feedback at <a href="mailto:admin@dszczepaniak.pl">admin@dszczepaniak.pl</a></li>
             </ol>
             <h2>Your score:</h2>
@@ -27,5 +28,6 @@
     </div>
     <footer>Version: 1.0 Created by <a href="http://dszczepaniak.pl">Dominik Szczepaniak</a>. Contact: <a href="mailto:admin@dszczepaniak.pl">admin@dszczepaniak.pl</a></footer>
     <script src="scripts/main.js"></script>
+    <script src="scripts/handleTouchMove.js"></script>
   </body>
 </html>
