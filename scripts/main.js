@@ -17,6 +17,7 @@ let snakeTail = 5;
 let foodX = Math.floor(Math.random()*tileCount);
 let foodY = Math.floor(Math.random()*tileCount);
 
+
 let snakeX = playground.width / 2 - gridSize / 2;
 let snakeY = playground.height / 2 - gridSize / 2;
 
