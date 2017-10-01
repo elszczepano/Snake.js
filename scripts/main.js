@@ -9,13 +9,19 @@ playground.height = 500;
 const gridSize = 20;
 const snakeColor = "#ffff99";
 const foodColor = "#990033";
+const powerUpColor = "#33cc00";
 let tileCount = playground.width/gridSize;
 let velocityX = 0;
 let velocityY = 0;
 let trail = [];
 let snakeTail = 5;
-let foodX = Math.floor(Math.random()*tileCount);
-let foodY = Math.floor(Math.random()*tileCount);
+
+function getRandomTile() {
+  return Math.floor(Math.random()*tileCount);
+}
+
+let foodX = getRandomTile();
+let foodY = getRandomTile();
 
 let snakeX = playground.width / 2 - gridSize / 2;
 let snakeY = playground.height / 2 - gridSize / 2;
@@ -52,16 +58,13 @@ function drawSnakeFood() {
         if(snakeX==foodX && snakeY==foodY) {
           snakeTail++;
           scoreBox.innerHTML = snakeTail-5;
-          foodX = Math.floor(Math.random()*tileCount);
-          foodY = Math.floor(Math.random()*tileCount);
+          foodX = getRandomTile();
+          foodY = getRandomTile();
           }
           ctx.fillStyle = foodColor;
           ctx.fillRect(foodX * gridSize,foodY * gridSize,gridSize-2,gridSize-2);
           }
-function gameOver(){
-  alert("Game over! Your score: "+(snakeTail-5)+" points. Wanna play again?");
-  location.reload();
-  }
+
 function drawSnake() {
          snakeX += velocityX;
          snakeY += velocityY;
@@ -82,7 +85,11 @@ function drawSnake() {
         for(let i = 0; i < trail.length; i++) {
             ctx.fillRect(trail[i].x * gridSize,trail[i].y * gridSize,gridSize-2,gridSize-2);
             if((trail[i].x == snakeX && trail[i].y == snakeY)&&(snakeX!=0||snakeY!=0)) {
-                setTimeout(gameOver(),100);
+                ctx.fillRect(trail[i].x * gridSize,trail[i].y * gridSize,gridSize-2,gridSize-2);
+                setTimeout(function(){
+                  alert("Game over! Your score: "+(snakeTail-5)+" points. Wanna play again?");
+                  location.reload();
+                }, 100);
             }
         }
         trail.push({x:snakeX,y:snakeY});
