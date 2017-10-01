@@ -17,7 +17,6 @@ let snakeTail = 5;
 let foodX = Math.floor(Math.random()*tileCount);
 let foodY = Math.floor(Math.random()*tileCount);
 
-
 let snakeX = playground.width / 2 - gridSize / 2;
 let snakeY = playground.height / 2 - gridSize / 2;
 
@@ -59,6 +58,10 @@ function drawSnakeFood() {
           ctx.fillStyle = foodColor;
           ctx.fillRect(foodX * gridSize,foodY * gridSize,gridSize-2,gridSize-2);
           }
+function gameOver(){
+  alert("Game over! Your score: "+(snakeTail-5)+" points. Wanna play again?");
+  location.reload();
+  } 
 function drawSnake() {
          snakeX += velocityX;
          snakeY += velocityY;
@@ -79,10 +82,7 @@ function drawSnake() {
         for(let i = 0; i < trail.length; i++) {
             ctx.fillRect(trail[i].x * gridSize,trail[i].y * gridSize,gridSize-2,gridSize-2);
             if((trail[i].x == snakeX && trail[i].y == snakeY)&&(snakeX!=0||snakeY!=0)) {
-                ctx.fillRect(trail[i+1].x * gridSize,trail[i+1].y * gridSize,gridSize-2,gridSize-2);
-                alert("Game over! Your score: "+(snakeTail-5)+" points. Wanna play again?");
-                snakeTail = 5;
-                location.reload();
+                setTimeout(gameOver(),100);
             }
         }
         trail.push({x:snakeX,y:snakeY});
