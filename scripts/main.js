@@ -16,12 +16,12 @@ let velocityY = 0;
 let trail = [];
 let snakeTail = 5;
 
-function getRandomTile() {
+function getRandomTileCoord() {
   return Math.floor(Math.random()*tileCount);
 }
 
-let foodX = getRandomTile();
-let foodY = getRandomTile();
+let foodX = getRandomTileCoord();
+let foodY = getRandomTileCoord();
 
 let snakeX = playground.width / 2 - gridSize / 2;
 let snakeY = playground.height / 2 - gridSize / 2;
@@ -58,8 +58,8 @@ function drawSnakeFood() {
         if(snakeX==foodX && snakeY==foodY) {
           snakeTail++;
           scoreBox.innerHTML = snakeTail-5;
-          foodX = getRandomTile();
-          foodY = getRandomTile();
+          foodX = getRandomTileCoord();
+          foodY = getRandomTileCoord();
           }
           ctx.fillStyle = foodColor;
           ctx.fillRect(foodX * gridSize,foodY * gridSize,gridSize-2,gridSize-2);
