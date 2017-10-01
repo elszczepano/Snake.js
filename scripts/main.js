@@ -61,7 +61,7 @@ function drawSnakeFood() {
 function gameOver(){
   alert("Game over! Your score: "+(snakeTail-5)+" points. Wanna play again?");
   location.reload();
-  } 
+  }
 function drawSnake() {
          snakeX += velocityX;
          snakeY += velocityY;
