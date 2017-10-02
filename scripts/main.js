@@ -9,7 +9,6 @@ playground.height = 500;
 const gridSize = 20;
 const snakeColor = "#ffff99";
 const foodColor = "#990033";
-const powerUpColor = "#33cc00";
 let tileCount = playground.width/gridSize;
 let velocityX = 0;
 let velocityY = 0;
@@ -65,6 +64,11 @@ function drawSnakeFood() {
           ctx.fillRect(foodX * gridSize,foodY * gridSize,gridSize-2,gridSize-2);
           }
 
+function onGameOver() {
+	alert("Game over! Your score: "+(snakeTail-5)+" points. Wanna play again?");
+    location.reload();
+}
+
 function drawSnake() {
          snakeX += velocityX;
          snakeY += velocityY;
@@ -86,10 +90,7 @@ function drawSnake() {
             ctx.fillRect(trail[i].x * gridSize,trail[i].y * gridSize,gridSize-2,gridSize-2);
             if((trail[i].x == snakeX && trail[i].y == snakeY)&&(snakeX!=0||snakeY!=0)) {
                 ctx.fillRect(trail[i].x * gridSize,trail[i].y * gridSize,gridSize-2,gridSize-2);
-                setTimeout(function(){
-                  alert("Game over! Your score: "+(snakeTail-5)+" points. Wanna play again?");
-                  location.reload();
-                }, 100);
+                setTimeout(onGameOver, 100);
             }
         }
         trail.push({x:snakeX,y:snakeY});
