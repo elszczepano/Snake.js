@@ -30,9 +30,11 @@ function drawPlayground() {
       ctx.fillRect(0,0,playground.width,playground.height);
 }
 function moveSnake(ev) {
+	const oldX = velocityX;
+	const oldY = velocityY;
+	
     switch (ev.keyCode) {
       case 37:
-        //move left
         velocityX = -1;
         velocityY = 0;
         break;
@@ -52,6 +54,15 @@ function moveSnake(ev) {
         velocityY = 1;
         break;
     }
+	
+    // don't allow moving in the opposite direction
+	// as it would end with suicide
+    if((velocityX !== 0 && oldX !== 0 && velocityX !== oldX)
+        || (velocityY !== 0 && oldY !== 0 && velocityY !== oldY))
+    {
+        velocityX = oldX;
+        velocityY = oldY;
+	}
 }
 function drawSnakeFood() {
         if(snakeX==foodX && snakeY==foodY) {
