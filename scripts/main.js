@@ -12,15 +12,13 @@ const foodColor = "#990033";
 let tileCount = playground.width / gridSize;
 let velocityX = 0;
 let velocityY = 0;
-let trail = [];
+const trail = [];
+const fruits = [];
 let snakeTail = 5;
 
 function getRandomTileCoord() {
   return Math.floor(Math.random() * tileCount);
 }
-
-let foodX = getRandomTileCoord();
-let foodY = getRandomTileCoord();
 
 let snakeX = playground.width / 2 - gridSize / 2;
 let snakeY = playground.height / 2 - gridSize / 2;
@@ -65,15 +63,37 @@ function moveSnake(ev) {
   }
 }
 
-function drawSnakeFood() {
-  if (snakeX === foodX && snakeY === foodY) {
-    snakeTail++;
-    scoreBox.innerHTML = snakeTail - 5;
-    foodX = getRandomTileCoord();
-    foodY = getRandomTileCoord();
+function drawFruits()
+{
+  for(let i = 0; i < fruits.length; i++)
+  {
+    const fruit = fruits[i];
+
+    ctx.fillStyle = foodColor;
+    ctx.fillRect(fruit.x * gridSize, fruit.y * gridSize, gridSize - 2, gridSize - 2);
   }
-  ctx.fillStyle = foodColor;
-  ctx.fillRect(foodX * gridSize, foodY * gridSize, gridSize - 2, gridSize - 2);
+}
+
+function handleSnakeEat()
+{
+  for(let i = 0; i < fruits.length; i++)
+  {
+    const fruit = fruits[i];
+
+    if(snakeX === fruit.x && snakeY === fruit.y)
+    {
+      snakeTail += fruit.points;
+      scoreBox.innerHTML = snakeTail - 5;
+      fruits.splice(i, 1);
+
+      spawnFruit();
+    }
+  }
+}
+
+function spawnFruit()
+{
+  fruits.push({x: getRandomTileCoord(), y: getRandomTileCoord(), points: 1});
 }
 
 function onGameOver() {
@@ -121,7 +141,9 @@ function drawSnake() {
 
 function gameInit() {
   drawSnake();
-  drawSnakeFood();
+  drawFruits();
+  handleSnakeEat();
 }
 
+spawnFruit();
 setInterval(gameInit, 100);
