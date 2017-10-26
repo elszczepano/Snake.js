@@ -1,6 +1,6 @@
 const playground = document.querySelector('canvas');
 const ctx = playground.getContext('2d');
-const score = document.querySelector('scoreBox');
+const scoreBox = document.querySelector('#scoreBox');
 document.addEventListener("keydown", moveSnake);
 
 playground.width = 500;
