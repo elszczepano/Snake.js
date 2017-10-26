@@ -139,11 +139,14 @@ function drawSnake() {
   }
 }
 
-function gameInit() {
+function onGameFrame() {
   drawSnake();
   drawFruits();
   handleSnakeEat();
 }
 
-spawnFruit();
-setInterval(gameInit, 100);
+(function onGameInit(){
+  spawnFruit();
+  setInterval(onGameFrame, 100);
+}());
+
