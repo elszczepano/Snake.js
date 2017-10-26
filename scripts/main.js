@@ -84,6 +84,7 @@ function onGameOver() {
 function drawSnake() {
   snakeX += velocityX;
   snakeY += velocityY;
+
   if (snakeX < 0) {
     snakeX = tileCount - 1;
   }
@@ -96,16 +97,23 @@ function drawSnake() {
   if (snakeY > tileCount - 1) {
     snakeY = 0;
   }
+
   drawPlayground();
+
   ctx.fillStyle = snakeColor;
+
   for (let i = 0; i < trail.length; i++) {
-    ctx.fillRect(trail[i].x * gridSize, trail[i].y * gridSize, gridSize - 2, gridSize - 2);
-    if ((trail[i].x === snakeX && trail[i].y === snakeY) && (snakeX !== 0 || snakeY !== 0)) {
-      ctx.fillRect(trail[i].x * gridSize, trail[i].y * gridSize, gridSize - 2, gridSize - 2);
+    const {x, y} = trail[i];
+    ctx.fillRect(x * gridSize, y * gridSize, gridSize - 2, gridSize - 2);
+
+    if ((x === snakeX && y === snakeY) && (snakeX !== 0 || snakeY !== 0)) {
+      ctx.fillRect(x * gridSize, y * gridSize, gridSize - 2, gridSize - 2);
       setTimeout(onGameOver, 100);
     }
   }
+
   trail.push({x: snakeX, y: snakeY});
+
   while (trail.length > snakeTail) {
     trail.shift();
   }
