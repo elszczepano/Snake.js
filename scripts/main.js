@@ -9,6 +9,8 @@ playground.height = 500;
 const gridSize = 20;
 const snakeColor = "#ffff99";
 const foodColor = "#990033";
+const specialFoodColor = "#53d724";
+
 let tileCount = playground.width / gridSize;
 let velocityX = 0;
 let velocityY = 0;
@@ -22,6 +24,10 @@ function getRandomTileCoord() {
 
 let snakeX = playground.width / 2 - gridSize / 2;
 let snakeY = playground.height / 2 - gridSize / 2;
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 function drawPlayground() {
   ctx.fillStyle = "#000";
@@ -69,7 +75,7 @@ function drawFruits()
   {
     const fruit = fruits[i];
 
-    ctx.fillStyle = foodColor;
+    ctx.fillStyle = fruit.color;
     ctx.fillRect(fruit.x * gridSize, fruit.y * gridSize, gridSize - 2, gridSize - 2);
   }
 }
@@ -87,13 +93,21 @@ function handleSnakeEat()
       fruits.splice(i, 1);
 
       spawnFruit();
+
+      if(getRandomInt(1, 10) === 10)
+        spawnSpecialFruit();
     }
   }
 }
 
 function spawnFruit()
 {
-  fruits.push({x: getRandomTileCoord(), y: getRandomTileCoord(), points: 1});
+  fruits.push({x: getRandomTileCoord(), y: getRandomTileCoord(), points: 1, color: foodColor});
+}
+
+function spawnSpecialFruit()
+{
+  fruits.push({x: getRandomTileCoord(), y: getRandomTileCoord(), points: 3, color: specialFoodColor});
 }
 
 function onGameOver() {
